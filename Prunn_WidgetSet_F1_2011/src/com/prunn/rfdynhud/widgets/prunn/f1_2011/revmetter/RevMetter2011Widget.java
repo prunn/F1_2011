@@ -242,7 +242,7 @@ public class RevMetter2011Widget extends Widget
     @Override
     public void onRealtimeEntered( LiveGameData gameData, boolean isEditorMode )
     {
-        super.onRealtimeEntered( gameData, isEditorMode );
+        super.onCockpitEntered( gameData, isEditorMode );
         String cpid = "Y29weXJpZ2h0QFBydW5uMjAxMQ";
         if(!isEditorMode)
             log(cpid);
@@ -571,7 +571,7 @@ public class RevMetter2011Widget extends Widget
         oldTenthOfSec = tenthOfSec.getValue();
         if(gameData.getProfileInfo().getMeasurementUnits() == MeasurementUnits.METRIC)
         {
-            cSpeed.update( (int)telemData.getScalarVelocityKPH() );
+            cSpeed.update( (int)telemData.getScalarVelocityKmh() );
             if(cSpeed.getValue() < 200)
                 SpeedResultFontColor = speedFontColor;
             else
@@ -582,7 +582,7 @@ public class RevMetter2011Widget extends Widget
         }
         else
         {
-            cSpeed.update( (int)telemData.getScalarVelocityMPH() );
+            cSpeed.update( (int)telemData.getScalarVelocityMih() );
             if(cSpeed.getValue() < 124)
                 SpeedResultFontColor = speedFontColor;
             else
