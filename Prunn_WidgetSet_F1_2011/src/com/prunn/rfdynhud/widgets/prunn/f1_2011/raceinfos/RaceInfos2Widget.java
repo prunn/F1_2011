@@ -26,8 +26,6 @@ import net.ctdp.rfdynhud.values.BoolValue;
 import net.ctdp.rfdynhud.values.FloatValue;
 import net.ctdp.rfdynhud.values.IntValue;
 import net.ctdp.rfdynhud.widgets.base.widget.Widget;
-
-import com.prunn.rfdynhud.plugins.tlcgenerator.StandardTLCGenerator;
 import com.prunn.rfdynhud.widgets.prunn._util.PrunnWidgetSetf1_2011;
 
 
@@ -74,12 +72,9 @@ public class RaceInfos2Widget extends Widget
     private ColorProperty GainedFontColor;
     private final IntValue CurrentLap = new IntValue();
     private BoolValue racefinished = new BoolValue();
-    StandardTLCGenerator gen = new StandardTLCGenerator();
-    
-    
-    
+   
     @Override
-    public void onRealtimeEntered( LiveGameData gameData, boolean isEditorMode )
+    public void onCockpitEntered( LiveGameData gameData, boolean isEditorMode )
     {
         super.onCockpitEntered( gameData, isEditorMode );
         String cpid = "Y29weXJpZ2h0QFBydW5uMjAxMQ";
@@ -224,9 +219,9 @@ public class RaceInfos2Widget extends Widget
              
             dsPos.draw( offsetX, offsetY, Integer.toString( vsi.getPlace( false ) ), texture );
             if( uppercasename.getValue() )
-                dsName.draw( offsetX, offsetY, gen.ShortName( vsi.getDriverNameShort().toUpperCase()), texture );
+                dsName.draw( offsetX, offsetY, PrunnWidgetSetf1_2011.ShortName( vsi.getDriverNameShort().toUpperCase()), texture );
             else
-                dsName.draw( offsetX, offsetY, gen.ShortName( vsi.getDriverNameShort()), texture );
+                dsName.draw( offsetX, offsetY, PrunnWidgetSetf1_2011.ShortName( vsi.getDriverNameShort()), texture );
             
             dsBest.draw( offsetX, offsetY, Loc2.best_lap, texture );
             dsBestTime.draw( offsetX, offsetY, TimingUtil.getTimeAsLaptimeString( vsi.getBestLapTime() ), texture );

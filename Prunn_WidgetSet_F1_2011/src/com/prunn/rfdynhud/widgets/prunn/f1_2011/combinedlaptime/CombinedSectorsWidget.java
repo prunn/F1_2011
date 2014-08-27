@@ -2,8 +2,6 @@ package com.prunn.rfdynhud.widgets.prunn.f1_2011.combinedlaptime;
 
 import java.awt.Font;
 import java.io.IOException;
-
-import com.prunn.rfdynhud.plugins.tlcgenerator.StandardTLCGenerator;
 import com.prunn.rfdynhud.widgets.prunn._util.PrunnWidgetSetf1_2011;
 
 import net.ctdp.rfdynhud.gamedata.LiveGameData;
@@ -61,13 +59,10 @@ public class CombinedSectorsWidget extends Widget
     
     protected final FontProperty f1_2011Font = new FontProperty("Main Font", PrunnWidgetSetf1_2011.F1_2011_FONT_NAME);
     private final ColorProperty fontColor2 = new ColorProperty("fontColor2", PrunnWidgetSetf1_2011.FONT_COLOR2_NAME);
-    StandardTLCGenerator gen = new StandardTLCGenerator();
     
-    
-   
     
     @Override
-    public void onRealtimeEntered( LiveGameData gameData, boolean isEditorMode )
+    public void onCockpitEntered( LiveGameData gameData, boolean isEditorMode )
     {
         super.onCockpitEntered( gameData, isEditorMode );
         String cpid = "Y29weXJpZ2h0QFBydW5uMjAxMQ";
@@ -125,9 +120,9 @@ public class CombinedSectorsWidget extends Widget
             float sec1time = scoringInfo.getLeadersVehicleScoringInfo().getFastestLaptime().getSector1();
             float sec2time = scoringInfo.getLeadersVehicleScoringInfo().getFastestLaptime().getSector2();
             float sec3time = scoringInfo.getLeadersVehicleScoringInfo().getFastestLaptime().getSector3();
-            sec1name = gen.ShortName( scoringInfo.getLeadersVehicleScoringInfo().getDriverNameShort());
-            sec2name = gen.ShortName( scoringInfo.getLeadersVehicleScoringInfo().getDriverNameShort());
-            sec3name = gen.ShortName( scoringInfo.getLeadersVehicleScoringInfo().getDriverNameShort());
+            sec1name = PrunnWidgetSetf1_2011.ShortName( scoringInfo.getLeadersVehicleScoringInfo().getDriverNameShort());
+            sec2name = PrunnWidgetSetf1_2011.ShortName( scoringInfo.getLeadersVehicleScoringInfo().getDriverNameShort());
+            sec3name = PrunnWidgetSetf1_2011.ShortName( scoringInfo.getLeadersVehicleScoringInfo().getDriverNameShort());
             
             VehicleScoringInfo vsi;
             for(int i=1;i < scoringInfo.getNumVehicles();i++)
@@ -136,17 +131,17 @@ public class CombinedSectorsWidget extends Widget
                 if(vsi.getFastestLaptime() != null && vsi.getFastestLaptime().getSector1() > 0 && vsi.getFastestLaptime().getSector1() < sec1time)
                 {
                     sec1time = vsi.getFastestLaptime().getSector1();
-                    sec1name = gen.ShortName( vsi.getDriverNameShort());
+                    sec1name = PrunnWidgetSetf1_2011.ShortName( vsi.getDriverNameShort());
                 }
                 if(vsi.getFastestLaptime() != null && vsi.getFastestLaptime().getSector2() > 0 && vsi.getFastestLaptime().getSector2() < sec2time)
                 {
                     sec2time = vsi.getFastestLaptime().getSector2();
-                    sec2name = gen.ShortName( vsi.getDriverNameShort());
+                    sec2name = PrunnWidgetSetf1_2011.ShortName( vsi.getDriverNameShort());
                 }
                 if(vsi.getFastestLaptime() != null && vsi.getFastestLaptime().getSector3() > 0 && vsi.getFastestLaptime().getSector3() < sec3time)
                 {
                     sec3time = vsi.getFastestLaptime().getSector3();
-                    sec3name = gen.ShortName( vsi.getDriverNameShort());
+                    sec3name = PrunnWidgetSetf1_2011.ShortName( vsi.getDriverNameShort());
                 }
             }
                         

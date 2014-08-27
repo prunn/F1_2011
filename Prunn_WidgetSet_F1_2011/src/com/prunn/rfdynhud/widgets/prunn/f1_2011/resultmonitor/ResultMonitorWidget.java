@@ -3,9 +3,6 @@ package com.prunn.rfdynhud.widgets.prunn.f1_2011.resultmonitor;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.IOException;
-
-import com.prunn.rfdynhud.plugins.tlcgenerator.StandardTLCGenerator;
-
 import net.ctdp.rfdynhud.gamedata.FinishStatus;
 import net.ctdp.rfdynhud.gamedata.LiveGameData;
 import net.ctdp.rfdynhud.gamedata.ScoringInfo;
@@ -69,12 +66,11 @@ public class ResultMonitorWidget extends Widget
     private StringValue[] driverNames = null;
     private StringValue[] driverTeam = null;
     private FloatValue[] gaps = null;
-    StandardTLCGenerator gen = new StandardTLCGenerator();
     private BooleanProperty AbsTimes = new BooleanProperty("Use absolute times", false) ;
     
     
     @Override
-    public void onRealtimeEntered( LiveGameData gameData, boolean isEditorMode )
+    public void onCockpitEntered( LiveGameData gameData, boolean isEditorMode )
     {
         super.onCockpitEntered( gameData, isEditorMode );
         String cpid = "Y29weXJpZ2h0QFBydW5uMjAxMQ";
@@ -169,10 +165,10 @@ public class ResultMonitorWidget extends Widget
             if(vsi != null)
             {
                 positions[i].update( vsi.getPlace( false ) );
-                driverNames[i].update( gen.ShortName( vsi.getDriverNameShort()) );
+                driverNames[i].update( PrunnWidgetSetf1_2011.ShortName( vsi.getDriverNameShort()) );
                 
                 if(vsi.getVehicleInfo() != null)
-                    driverTeam[i].update( gen.generateShortTeamNames( vsi.getVehicleInfo().getTeamName(), gameData.getFileSystem().getConfigFolder() ));
+                    driverTeam[i].update( PrunnWidgetSetf1_2011.generateShortTeamNames( vsi.getVehicleInfo().getTeamName(), gameData.getFileSystem().getConfigFolder() ));
                 else
                     driverTeam[i].update( vsi.getVehicleClass());
                 

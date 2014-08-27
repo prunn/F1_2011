@@ -2,10 +2,7 @@ package com.prunn.rfdynhud.widgets.prunn.f1_2011.raceinfos;
 
 import java.awt.Font;
 import java.io.IOException;
-
-import com.prunn.rfdynhud.plugins.tlcgenerator.StandardTLCGenerator;
 import com.prunn.rfdynhud.widgets.prunn._util.PrunnWidgetSetf1_2011;
-
 import net.ctdp.rfdynhud.gamedata.Laptime;
 import net.ctdp.rfdynhud.gamedata.LiveGameData;
 import net.ctdp.rfdynhud.gamedata.ScoringInfo;
@@ -106,13 +103,10 @@ public class RaceInfosWidget extends Widget
     private BoolValue racefinished = new BoolValue();
     
     private int widgetpart = 0;//0-info 1-pitstop 2-fastestlap 3-winner
-    private final FloatValue FastestLapTime = new FloatValue(-1F, 0.001F);
-    StandardTLCGenerator gen = new StandardTLCGenerator();
-    
-    
+    private final FloatValue FastestLapTime = new FloatValue(-1F, 0.001F);  
     
     @Override
-    public void onRealtimeEntered( LiveGameData gameData, boolean isEditorMode )
+    public void onCockpitEntered( LiveGameData gameData, boolean isEditorMode )
     {
         super.onCockpitEntered( gameData, isEditorMode );
         String cpid = "Y29weXJpZ2h0QFBydW5uMjAxMQ";
@@ -401,7 +395,7 @@ public class RaceInfosWidget extends Widget
                         
                         dsName.draw( offsetX, offsetY, top2info1, texture );
                         dsTeam.draw( offsetX, offsetY, top3info1, texture );
-                        dsWinner.draw( offsetX, offsetY, gen.ShortName( top1info1 ), texture );
+                        dsWinner.draw( offsetX, offsetY, PrunnWidgetSetf1_2011.ShortName( top1info1 ), texture );
                         dsTimeC.draw( offsetX, offsetY, top2info2c, texture);
                         dsTitleC.draw( offsetX, offsetY, top3info2c, texture );
                         
@@ -411,7 +405,7 @@ public class RaceInfosWidget extends Widget
                         VehicleScoringInfo fastcarinfos = gameData.getScoringInfo().getFastestLapVSI();
                         
                         if(fastcarinfos.getVehicleInfo() != null)
-                            top3info1 = gen.generateShortTeamNames( fastcarinfos.getVehicleInfo().getTeamName(), gameData.getFileSystem().getConfigFolder() );
+                            top3info1 = PrunnWidgetSetf1_2011.generateShortTeamNames( fastcarinfos.getVehicleInfo().getTeamName(), gameData.getFileSystem().getConfigFolder() );
                         else
                             top3info1 = fastcarinfos.getVehicleClass(); 
                         if( uppercasename.getValue() )
@@ -421,7 +415,7 @@ public class RaceInfosWidget extends Widget
                         top2info2 = Loc.fastest_lap;//"FASTEST LAP";
                         top3info2 = TimingUtil.getTimeAsLaptimeString(FastestLapTime.getValue() );
                         
-                        dsName.draw( offsetX, offsetY, gen.ShortName( top2info1 ), texture );
+                        dsName.draw( offsetX, offsetY, PrunnWidgetSetf1_2011.ShortName( top2info1 ), texture );
                         dsTeam.draw( offsetX, offsetY, top3info1, texture );
                         dsTime.draw( offsetX, offsetY, top2info2, texture);
                         dsTitle.draw( offsetX, offsetY, top3info2, texture );
@@ -432,7 +426,7 @@ public class RaceInfosWidget extends Widget
                         VehicleScoringInfo winnercarinfos = gameData.getScoringInfo().getLeadersVehicleScoringInfo();
                         
                         if(winnercarinfos.getVehicleInfo() != null)
-                            top3info1 = gen.generateShortTeamNames( winnercarinfos.getVehicleInfo().getTeamName(), gameData.getFileSystem().getConfigFolder() );
+                            top3info1 = PrunnWidgetSetf1_2011.generateShortTeamNames( winnercarinfos.getVehicleInfo().getTeamName(), gameData.getFileSystem().getConfigFolder() );
                         else
                             top3info1 = winnercarinfos.getVehicleClass(); 
                         
@@ -459,7 +453,7 @@ public class RaceInfosWidget extends Widget
                         top2info2b = NumberUtil.formatFloat( gameData.getTrackInfo().getTrack().getTrackLength() * gameData.getScoringInfo().getLeadersVehicleScoringInfo().getLapsCompleted() / 1000f, 3, true ) + " km";
                         top3info2b = NumberUtil.formatFloat( gameData.getTrackInfo().getTrack().getTrackLength() * gameData.getScoringInfo().getLeadersVehicleScoringInfo().getLapsCompleted() / 1000f / laps * 3600, 3, true ) + " km/h";
                         
-                        dsName.draw( offsetX, offsetY, gen.ShortName( top2info1 ), texture );
+                        dsName.draw( offsetX, offsetY, PrunnWidgetSetf1_2011.ShortName( top2info1 ), texture );
                         dsTeam.draw( offsetX, offsetY, top3info1, texture );
                         dsWinner.draw( offsetX, offsetY, top1info1, texture );
                         dsTimeB.draw( offsetX, offsetY, top2info2b, texture);
@@ -472,7 +466,7 @@ public class RaceInfosWidget extends Widget
                         VehicleScoringInfo currentcarinfosInfo = gameData.getScoringInfo().getViewedVehicleScoringInfo();
                         
                         if(currentcarinfosInfo.getVehicleInfo() != null)
-                            top3info1 = gen.generateShortTeamNames( currentcarinfosInfo.getVehicleInfo().getTeamName(), gameData.getFileSystem().getConfigFolder() );
+                            top3info1 = PrunnWidgetSetf1_2011.generateShortTeamNames( currentcarinfosInfo.getVehicleInfo().getTeamName(), gameData.getFileSystem().getConfigFolder() );
                         else
                             top3info1 = currentcarinfosInfo.getVehicleClass(); 
                         
@@ -483,7 +477,7 @@ public class RaceInfosWidget extends Widget
                         pos = Integer.toString( currentcarinfosInfo.getPlace(false) );
                         
                         dsPos.draw( offsetX, offsetY, pos, texture );
-                        dsName.draw( offsetX, offsetY, gen.ShortName( top2info1 ), texture );
+                        dsName.draw( offsetX, offsetY, PrunnWidgetSetf1_2011.ShortName( top2info1 ), texture );
                         dsTeam.draw( offsetX, offsetY, top3info1, texture );
                         
                         break;

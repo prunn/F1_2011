@@ -2,8 +2,6 @@ package com.prunn.rfdynhud.widgets.prunn.f1_2011.racecontrol;
 
 import java.awt.Font;
 import java.io.IOException;
-
-import com.prunn.rfdynhud.plugins.tlcgenerator.StandardTLCGenerator;
 import com.prunn.rfdynhud.widgets.prunn._util.PrunnWidgetSetf1_2011;
 import net.ctdp.rfdynhud.gamedata.LiveGameData;
 import net.ctdp.rfdynhud.gamedata.ScoringInfo;
@@ -56,11 +54,10 @@ public class RaceControlWidget extends Widget
     private final DelayProperty visibleTime;
     private long visibleEnd;
     private IntProperty fontyoffset = new IntProperty("Y Font Offset", 0);
-    StandardTLCGenerator gen = new StandardTLCGenerator();
     
     
     @Override
-    public void onRealtimeEntered( LiveGameData gameData, boolean isEditorMode )
+    public void onCockpitEntered( LiveGameData gameData, boolean isEditorMode )
     {
         super.onCockpitEntered( gameData, isEditorMode );
         String cpid = "Y29weXJpZ2h0QFBydW5uMjAxMQ";
@@ -202,7 +199,7 @@ public class RaceControlWidget extends Widget
                     
                     //if ( needsCompleteRedraw )
                     //{
-                        dsMessage.draw( offsetX, offsetY, Loc.penalty + " " + gen.ShortName(vsi.getDriverName().toUpperCase()), texture );
+                        dsMessage.draw( offsetX, offsetY, Loc.penalty + " " + PrunnWidgetSetf1_2011.ShortName(vsi.getDriverName().toUpperCase()), texture );
                     //}"RACE CONTROL"DRIVE THROUGH PENALTY FOR
                 }
         

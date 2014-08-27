@@ -144,14 +144,8 @@ public class CarTelemWidget extends Widget
         return null;
     }
     
-    /*@Override
-    public WidgetPackage getWidgetPackage()
-    {
-        return ( PrunnWidgetSetf1_2011.WIDGET_PACKAGE_F1_2011 );
-    }*/
-    
     @Override
-    public void onRealtimeEntered( LiveGameData gameData, boolean isEditorMode )
+    public void onCockpitEntered( LiveGameData gameData, boolean isEditorMode )
     {
         super.onCockpitEntered( gameData, isEditorMode );
         String cpid = "Y29weXJpZ2h0QFBydW5uMjAxMQ";

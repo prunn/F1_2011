@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.io.IOException;
 
-import com.prunn.rfdynhud.plugins.tlcgenerator.StandardTLCGenerator;
 import com.prunn.rfdynhud.widgets.prunn._util.PrunnWidgetSetf1_2011;
 
 import net.ctdp.rfdynhud.gamedata.FinishStatus;
@@ -78,7 +77,6 @@ public class QualTimeWidget extends Widget
     private final ImagePropertyWithTexture imgTimeYellowFinish = new ImagePropertyWithTexture( "imgTimeYellowFinish", "prunn/f1_2011/data_slower.png" );
     private final ImagePropertyWithTexture imgTimeYellowKnockOut = new ImagePropertyWithTexture( "imgTimeYellowKnockOut", "prunn/f1_2011/labeled_data_yellow.png" );
     private IntProperty fontyoffset = new IntProperty("Y Font Offset", 0);
-    StandardTLCGenerator gen = new StandardTLCGenerator();
     
     
     private final ColorProperty fontColor2 = new ColorProperty("fontColor2", PrunnWidgetSetf1_2011.FONT_COLOR2_NAME);
@@ -113,29 +111,9 @@ public class QualTimeWidget extends Widget
     {
         return isvisible;
     }
-    /*@Override
-    public String getDefaultNamedColorValue( String name )
-    {
-        if(name.equals("KnockoutFontColor"))
-            return "#DA1C19";
-        
-        return ( PrunnWidgetSetf1_2011.getDefaultNamedColorValue( name ) );
-    }
     
     @Override
-    public String getDefaultNamedFontValue(String name)
-    {
-        return ( PrunnWidgetSetf1_2011.getDefaultNamedFontValue( name ) );
-    }
-    
-    @Override
-    public WidgetPackage getWidgetPackage()
-    {
-        return ( PrunnWidgetSetf1_2011.WIDGET_PACKAGE_F1_2011 );
-    }*/
-    
-    @Override
-    public void onRealtimeEntered( LiveGameData gameData, boolean isEditorMode )
+    public void onCockpitEntered( LiveGameData gameData, boolean isEditorMode )
     {
         super.onCockpitEntered( gameData, isEditorMode );
         String cpid = "Y29weXJpZ2h0QFBydW5uMjAxMQ";
@@ -469,9 +447,9 @@ public class QualTimeWidget extends Widget
         if ( needsCompleteRedraw || ( clock.c() && leaderID.hasChanged() ) )
         {
             if( uppercasename.getValue() )
-                dsName.draw( offsetX, offsetY, gen.ShortName( currentcarinfos.getDriverNameShort().toUpperCase()), texture );
+                dsName.draw( offsetX, offsetY, PrunnWidgetSetf1_2011.ShortName( currentcarinfos.getDriverNameShort().toUpperCase()), texture );
             else
-                dsName.draw( offsetX, offsetY, gen.ShortName( currentcarinfos.getDriverNameShort()), texture );
+                dsName.draw( offsetX, offsetY, PrunnWidgetSetf1_2011.ShortName( currentcarinfos.getDriverNameShort()), texture );
             
         }
         

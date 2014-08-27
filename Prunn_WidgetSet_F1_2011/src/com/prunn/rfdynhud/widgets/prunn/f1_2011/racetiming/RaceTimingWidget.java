@@ -3,9 +3,6 @@ package com.prunn.rfdynhud.widgets.prunn.f1_2011.racetiming;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.IOException;
-
-import com.prunn.rfdynhud.plugins.tlcgenerator.StandardTLCGenerator;
-
 import net.ctdp.rfdynhud.gamedata.FinishStatus;
 import net.ctdp.rfdynhud.gamedata.LiveGameData;
 import net.ctdp.rfdynhud.gamedata.ScoringInfo;
@@ -76,35 +73,13 @@ public class RaceTimingWidget extends Widget
     private IntValue cpos = new IntValue();
     private IntValue rtime = new IntValue();
     private IntValue sessiontime = new IntValue();
-    StandardTLCGenerator gen = new StandardTLCGenerator();
     private BooleanProperty relativeToCurrent = new BooleanProperty("Relative to viewed car", false);
     
     private BooleanProperty timeRefreshMode = new BooleanProperty("Time Mode",true);
     private IntProperty refreshTime = new IntProperty("Refresh Time", 10);
     
-    
-    
-    
-    /*@Override
-    public WidgetPackage getWidgetPackage()
-    {
-        return ( PrunnWidgetSetf1_2011.WIDGET_PACKAGE_F1_2011_Race );
-    }
-    
     @Override
-    public String getDefaultNamedColorValue( String name )
-    {
-        return ( PrunnWidgetSetf1_2011.getDefaultNamedColorValue( name ) );
-    }
-    
-    @Override
-    public String getDefaultNamedFontValue(String name)
-    {
-        return ( PrunnWidgetSetf1_2011.getDefaultNamedFontValue( name ) );
-    }*/
-    
-    @Override
-    public void onRealtimeEntered( LiveGameData gameData, boolean isEditorMode )
+    public void onCockpitEntered( LiveGameData gameData, boolean isEditorMode )
     {
         super.onCockpitEntered( gameData, isEditorMode );
         String cpid = "Y29weXJpZ2h0QFBydW5uMjAxMQ";
@@ -208,7 +183,7 @@ public class RaceTimingWidget extends Widget
             {
                 VehicleScoringInfo vsi = vsis[i];
                 positions[i].update( vsi.getPlace( false ) );
-                names[i].update( gen.generateThreeLetterCode2( vsi.getDriverName(), gameData.getFileSystem().getConfigFolder() ) );
+                names[i].update( PrunnWidgetSetf1_2011.generateThreeLetterCode2( vsi.getDriverName(), gameData.getFileSystem().getConfigFolder() ) );
                 if(vsi.getFinishStatus() == FinishStatus.DNF || vsi.getFinishStatus() == FinishStatus.DQ)
                     gaps[i].update( "OUT" );
                 else

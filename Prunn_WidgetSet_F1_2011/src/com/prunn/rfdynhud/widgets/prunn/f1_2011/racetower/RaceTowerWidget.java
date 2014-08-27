@@ -3,8 +3,6 @@ package com.prunn.rfdynhud.widgets.prunn.f1_2011.racetower;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.IOException;
-
-import com.prunn.rfdynhud.plugins.tlcgenerator.StandardTLCGenerator;
 import net.ctdp.rfdynhud.gamedata.GamePhase;
 import net.ctdp.rfdynhud.gamedata.LiveGameData;
 import net.ctdp.rfdynhud.gamedata.ScoringInfo;
@@ -64,12 +62,11 @@ public class RaceTowerWidget extends Widget
     private short[] gainedPlaces = null;
     private String[] names = null;
     private String[] gaps = null;
-    StandardTLCGenerator gen = new StandardTLCGenerator();
     private ColorProperty GainedFontColor;
     
    
     @Override
-    public void onRealtimeEntered( LiveGameData gameData, boolean isEditorMode )
+    public void onCockpitEntered( LiveGameData gameData, boolean isEditorMode )
     {
         super.onCockpitEntered( gameData, isEditorMode );
         String cpid = "Y29weXJpZ2h0QFBydW5uMjAxMQ";
@@ -158,7 +155,7 @@ public class RaceTowerWidget extends Widget
             
                 VehicleScoringInfo vsi = scoringInfo.getVehicleScoringInfo( i );
                 positions[i] = vsi.getPlace( false );
-                names[i] = gen.generateThreeLetterCode2( vsi.getDriverName(), gameData.getFileSystem().getConfigFolder() );
+                names[i] = PrunnWidgetSetf1_2011.generateThreeLetterCode2( vsi.getDriverName(), gameData.getFileSystem().getConfigFolder() );
                 
                 switch(data) //0-2-4-gaps 1-place gained
                 {

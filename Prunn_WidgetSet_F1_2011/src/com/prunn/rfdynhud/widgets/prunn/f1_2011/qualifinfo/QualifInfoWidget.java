@@ -2,8 +2,6 @@ package com.prunn.rfdynhud.widgets.prunn.f1_2011.qualifinfo;
 
 import java.awt.Font;
 import java.io.IOException;
-
-import com.prunn.rfdynhud.plugins.tlcgenerator.StandardTLCGenerator;
 import com.prunn.rfdynhud.widgets.prunn._util.PrunnWidgetSetf1_2011;
 import com.prunn.rfdynhud.widgets.prunn.f1_2011.qtime.QualTimeWidget;
 
@@ -73,7 +71,6 @@ public class QualifInfoWidget extends Widget
     private long visibleEnd;
     private IntValue cveh = new IntValue();
     private BoolValue cpit = new BoolValue();
-    StandardTLCGenerator gen = new StandardTLCGenerator();
     private StringValue team = new StringValue();
     private StringValue name = new StringValue();
     private StringValue pos = new StringValue();
@@ -108,7 +105,7 @@ public class QualifInfoWidget extends Widget
     }
     
     @Override
-    public void onRealtimeEntered( LiveGameData gameData, boolean isEditorMode )
+    public void onCockpitEntered( LiveGameData gameData, boolean isEditorMode )
     {
         super.onCockpitEntered( gameData, isEditorMode );
         String cpid = "Y29weXJpZ2h0QFBydW5uMjAxMQ";
@@ -238,11 +235,11 @@ public class QualifInfoWidget extends Widget
         {
     	    VehicleScoringInfo currentcarinfos = gameData.getScoringInfo().getViewedVehicleScoringInfo();
             
-        	name.update( gen.ShortName( currentcarinfos.getDriverNameShort() ) );
+        	name.update( PrunnWidgetSetf1_2011.ShortName( currentcarinfos.getDriverNameShort() ) );
             pos.update( NumberUtil.formatFloat( currentcarinfos.getPlace(false), 0, true));
             
             if(currentcarinfos.getVehicleInfo() != null)
-                team.update( gen.generateShortTeamNames( currentcarinfos.getVehicleInfo().getTeamName(), gameData.getFileSystem().getConfigFolder() ));
+                team.update( PrunnWidgetSetf1_2011.generateShortTeamNames( currentcarinfos.getVehicleInfo().getTeamName(), gameData.getFileSystem().getConfigFolder() ));
             else
                 team.update( currentcarinfos.getVehicleClass()); 
                 
